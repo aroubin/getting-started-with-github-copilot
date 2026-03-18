@@ -135,6 +135,12 @@ section h3 {
   transform: scale(1.05);
 }
 
+.participant-delete-btn:focus-visible {
+  outline: 2px solid #c62828;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.25);
+}
+
 .participant-delete-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
