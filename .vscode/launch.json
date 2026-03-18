@@ -13,7 +13,9 @@
         "src.app:app",
         "--reload",
         "--reload-include",
-        "src/static/*"
+        "src/static/*",
+        "--port",
+        "8002"
       ],
       "jinja": true
     }
