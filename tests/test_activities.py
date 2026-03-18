@@ -1,3 +1,6 @@
+from urllib.parse import quote
+
+
 def test_root_redirects_to_static_index(client):
     # Arrange
     path = "/"
@@ -29,7 +32,8 @@ def test_signup_adds_new_participant(client):
     # Arrange
     activity_name = "Chess Club"
     email = "new.student@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.post(path, params={"email": email})
@@ -46,7 +50,8 @@ def test_signup_returns_404_for_unknown_activity(client):
     # Arrange
     activity_name = "Unknown Club"
     email = "student@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.post(path, params={"email": email})
@@ -61,7 +66,8 @@ def test_signup_returns_400_for_duplicate_participant(client):
     # Arrange
     activity_name = "Chess Club"
     email = "michael@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.post(path, params={"email": email})
@@ -76,7 +82,8 @@ def test_unregister_removes_existing_participant(client):
     # Arrange
     activity_name = "Chess Club"
     email = "michael@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.delete(path, params={"email": email})
@@ -93,7 +100,8 @@ def test_unregister_returns_404_for_unknown_activity(client):
     # Arrange
     activity_name = "Unknown Club"
     email = "student@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.delete(path, params={"email": email})
@@ -108,7 +116,8 @@ def test_unregister_returns_404_for_non_registered_participant(client):
     # Arrange
     activity_name = "Chess Club"
     email = "not.registered@mergington.edu"
-    path = f"/activities/{activity_name}/signup"
+    encoded_activity_name = quote(activity_name, safe="")
+    path = f"/activities/{encoded_activity_name}/signup"
 
     # Act
     response = client.delete(path, params={"email": email})
