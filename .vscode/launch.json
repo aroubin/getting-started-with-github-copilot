@@ -5,6 +5,7 @@
   "version": "0.2.0",
   "configurations": [
 
+
     {
       "name": "Launch Mergington WebApp",
       "type": "debugpy",
@@ -16,7 +17,7 @@
         "--reload-include",
         "src/static/*",
         "--port",
-        "8001"
+        "8002"
       ],
       "jinja": true
     }
